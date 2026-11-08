@@ -15,6 +15,7 @@ function formatValue(value: string | number): string {
   }
   return value.toFixed(2);
 }
+```
 
 Inside the first branch, TypeScript knows that value is a string. After that branch returns, only the number case remains. This lets us call number methods without a type assertion.
 
@@ -23,12 +24,14 @@ Inside the first branch, TypeScript knows that value is a string. After that bra
 The instanceof operator checks whether an object's prototype chain contains a constructor's prototype. It is useful when working with class instances, including built-in classes.
 
 
+```ts
 function formatDate(value: Date | string): string {
   if (value instanceof Date) {
     return value.toISOString();
   }
   return value;
 }
+```
 
 Here, TypeScript allows toISOString only after the Date check succeeds.
 
@@ -37,6 +40,7 @@ Here, TypeScript allows toISOString only after the Date check succeeds.
 The in operator checks whether a property exists on an object or its prototype chain. We can use it to distinguish object types with different required properties.
 
 
+```ts
 type Student = { name: string; grade: number };
 type Teacher = { name: string; subject: string };
 
@@ -46,6 +50,7 @@ function getInfo(person: Student | Teacher): string {
   }
   return `Subject: ${person.subject}`;
 }
+```
 
 
 Optional properties need extra care because they may be absent even when an object has that type.
